@@ -75,7 +75,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		}
 		
 		// this makes it so that you have a second before dying, fall into lava or spikes smth
-		if(dying == 15) player.kill(); // 60fps so 60 means 1 second
+		if(dying >= 15) {
+			player.kill(); // 60fps so 60 means 1 second
+			dying = 0;
+		}
 	}
 	
 	// paints every object
@@ -125,12 +128,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
 				int green = (pixel >> 8) & 0xff;
 				int blue = (pixel) & 0xff;
 
-				//if((red == 125 && green == 255 && blue == 255) || (red == 0 && green == 0 && blue == 255))
-					//handler.addObject(new BGBlock(x * SCALE, y * SCALE, LT.getOutsideBG(), ID.bgBlock, BGType.outside, LT));
-				/*if((red == 0 && green == 0 && blue == 0) || (red == 255 && green == 255 && blue == 0))
+				if((red == 125 && green == 255 && blue == 255) || (red == 0 && green == 0 && blue == 255))
+					handler.addObject(new BGBlock(x * SCALE, y * SCALE, LT.getOutsideBG(), ID.bgBlock, BGType.outside, LT));
+				if((red == 0 && green == 0 && blue == 0) || (red == 255 && green == 255 && blue == 0))
 					handler.addObject(new BGBlock(x * SCALE, y * SCALE, LT.getCastleBG(), ID.bgBlock, BGType.castle, LT));
 				else if(red == 255 && green == 0 && blue == 255)
-					handler.addObject(new BGBlock(x * SCALE, y * SCALE, LT.getOutsideBG(), ID.bgBlock, BGType.outside, LT));*/
+					handler.addObject(new BGBlock(x * SCALE, y * SCALE, LT.getOutsideBG(), ID.bgBlock, BGType.outside, LT));
 			}
 		}
 		int px = 0;
